@@ -10,7 +10,7 @@ public class Piece {
 
     /** takes in a 1D Piece array and converts it into a 2D Piece array
      *  where Pieces share a row if they have the same latitude.*/
-    public Piece[][] groupByLat(Piece[] p) {
+    public static Piece[][] groupByLat(Piece[] p) {
         int width = (int) Math.sqrt(p.length);
         Piece[][] latSort = new Piece[width][width];
         for (int i = 0; i < p.length; i++) {
@@ -58,6 +58,37 @@ public class Piece {
         }
         Piece[][] sorted = sortByLat(grouped);
         return sorted;
+    }
+
+    public static void print2D(Piece[][] pieces) {
+        System.out.println("Array:");
+        for (Piece[] ps : pieces) {
+            print(ps);
+        }
+    }
+
+    public static void print(Piece[] ps) {
+        for (Piece p : ps) {
+            System.out.print("(" + p.longitude + ", " + p.latitude + ")  ");
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args){
+        Piece[] pieces = new Piece[]{
+                new Piece(0, 20),
+                new Piece(10, 0),
+                new Piece(20, 0),
+                new Piece(10, 20),
+                new Piece(10, 10),
+                new Piece(0, 10),
+                new Piece(0, 0),
+                new Piece(20, 20),
+                new Piece(20, 10),
+        };
+        print(pieces);
+//        Piece[][] lat = solvePuzzle(pieces);
+        print2D(groupByLat(pieces));
     }
 
 }
